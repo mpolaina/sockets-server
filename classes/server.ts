@@ -40,15 +40,21 @@ export default class Server {
     // crea una instancia y si no existe una nueva (new this = new server)
     
     private escucharSockets(){
+        
         console.log('Escuchando conexiones - sockets')
+        // Conexión de un cliente
         this.io.on('connection', cliente => {
-            console.log('Cliente conectado')
             
-            // Mensajes
-            socket.mensaje( cliente, this.io )
+            // Configurar usuario
+            socket.configurarUsuario( cliente, this.io ) 
             
-            // Desconectar
-            socket.desconectar( cliente )
+            // Conectar cliente
+            socket.conectarCliente( cliente )
+              
+            socket.mensaje( cliente, this.io ) // Escuchar Mensajes
+              
+            socket.desconectar( cliente ) // Escuchar Desconectar
+              
         })
     }
     
