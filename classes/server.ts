@@ -45,15 +45,16 @@ export default class Server {
         // Conexión de un cliente
         this.io.on('connection', cliente => {
             
-            // Configurar usuario
-            socket.configurarUsuario( cliente, this.io ) 
             
-            // Conectar cliente
-            socket.conectarCliente( cliente )
+            socket.configurarUsuario( cliente, this.io ) // Configurar usuario
+            
+            socket.conectarCliente( cliente, this.io ) // Conectar cliente
+            
+            socket.obtenerUsuarios( cliente, this.io) // Obtener usuarios activos
               
             socket.mensaje( cliente, this.io ) // Escuchar Mensajes
               
-            socket.desconectar( cliente ) // Escuchar Desconectar
+            socket.desconectar( cliente, this.io ) // Escuchar Desconectar
               
         })
     }
